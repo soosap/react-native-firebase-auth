@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const Card = ({ children }) => (
+export const Card = ({ children }) => (
 	<View style={styles.container}>
 		{children}
 	</View>
@@ -23,5 +23,3 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 	}
 });
-
-export default Card;

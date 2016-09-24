@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
-const Header = ({ title }) => (
+export const Header = ({ title }) => (
 	<View style={styles.container}>
 		<Text style={styles.text}>{title}</Text>
 	</View>
@@ -25,5 +25,3 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 	}
 });
-
-export default Header;
