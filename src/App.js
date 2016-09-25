@@ -6,8 +6,14 @@ import { Header } from './components/common';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
-	componentDidMount() {
-		this.setState({ firebaseRef: new Firebase('https://react-native-fbauth.firebaseio.com/') });
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			isLoggedIn: null,
+		};
+	}
+
 	componentWillMount() {
 		Firebase.initializeApp({
 			apiKey: 'AIzaSyCXt5Pd_XOoA6VAGoX4lIK-bsZXQ5vXNXQ',
@@ -26,11 +32,26 @@ class App extends Component {
 		});
 	}
 
+	renderContent = () => {
+		switch (this.state.isLoggedIn) {
+			case true:
+				return (
+					<View>
+						<Button onPress={() => Firebase.auth().signOut()}>
+							Logout
+						</Button>
+					</View>
+				);
+			case false:
+				return <LoginForm />;
+		}
+	};
+
 	render() {
 		return (
 			<View>
 				<Header title="FirebaseAuth" />
-				<LoginForm />
+				{this.renderContent()}
 			</View>
 		);
 	}
