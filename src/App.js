@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Firebase from 'firebase';
 
-import { Header } from './components/common';
+import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
@@ -44,17 +44,31 @@ class App extends Component {
 				);
 			case false:
 				return <LoginForm />;
+			default:
+				return (
+					<View style={styles.spinner}>
+						<Spinner size="large" />
+					</View>
+			);
 		}
 	};
 
 	render() {
 		return (
-			<View>
+			<View style={{ flex: 1 }}>
 				<Header title="FirebaseAuth" />
 				{this.renderContent()}
 			</View>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	spinner: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+});
 
 export default App;
